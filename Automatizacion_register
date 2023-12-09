@@ -1,0 +1,83 @@
+#Se importan las librerías necesarias
+import uiautomator2 as u2
+import time
+import re
+
+#Datos para hacer el Registro
+username = "userprueba"
+password = "password123"
+email = "prueba12321@gmail.com"
+
+#Conectarse al emulador mediante uiautomator2
+d = u2.connect() 
+
+#Introduzca el nombre del paquete de la aplicación y acceda a la aplicación correspondiente
+package_name = input("Introduce packagename:")
+d.app_start(package_name)
+d.sleep(1)
+
+#Palabras clave de inicio de sesión necesario
+register =["sign_up", "Sign up", "CREATE", "ACCOUNT", "NEW", "REGISTER"]
+registerfin =["right_tab_next_button", "rl_ali_register_btn", "Sign up", "CREATE"]
+keyboton = ["sign_in", "login", "sign_up", "CREATE", "ACCOUNT", "NEW", "REGISTER", "full_name"]
+keywordUser = ["username", "user", "id", "identificador", "email_field", "Username","et_email"]
+keywordPassword = ["password"]
+keyRegister = ["tv_switch_register_type", "right_tab"]
+
+#Hacer que no se muestre el teclado de entrada para evitar error posible
+d.set_fastinput_ime(True)
+d.sleep(1)
+
+def buscar_botonRegistro(claves):
+#Buscar el boton de login con una lista de palabras claves como parametro de entrada
+def buscar_estado(clave):
+
+def buscar_estado(clave):
+#Forma de búsqueda de estado para poder acceder a las aplicaciones de Modo 3
+
+def rellenar_email(clave):
+#Rellenar el correo electrónico
+
+def rellenar_user(clave):
+#Rellenar el nombre del usuario
+
+def rellenar_password(clave): 
+#Rellenar la contraseña
+
+button = buscar_botonRegistro(register)
+time.sleep(1)
+
+if(button):
+    button.click()
+    time.sleep(1)
+    switch = buscar_botonRegistro(keyRegister)
+    time.sleep(1)
+    switch.click()
+    time.sleep(1)
+    rellanar_email(KeywordUser)
+    time.sleep(1)
+    buscar_botonRegistro(registerfin).click()
+    time.sleep(1)
+    rellenar_user(KeywordUser)
+    time.sleep(1)
+    rellenar_password(keywordPassword)
+    time.sleep(1)
+else:   
+    if(buscar_estado(keyboton)):
+        button = buscar_botonRegistro(register)
+        time.sleep(1)
+        button.click()
+        time.sleep(1)
+        switch = buscar_botonRegistro(keyRegister)
+        time.sleep(1)
+        switch.click()
+        time.sleep(1)
+        d.click(1, 1)
+        time.sleep(1)
+        rellenar_email(keywordUser)
+        time.sleep(1)
+        rellenar_password(keywordPassword)
+        time.sleep(1)
+
+buscar_botonRegistro(registerfin).click()
+d.set_fastinput_ime(False)
