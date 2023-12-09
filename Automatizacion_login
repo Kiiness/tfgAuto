@@ -1,0 +1,73 @@
+#Se importan las librerías necesarias
+import uiautomator2 as u2
+import time
+import re
+
+#Datos para hacer el log-in
+username = "userprueba"
+password = "password123"
+
+#Conectarse al emulador mediante uiautomator2
+d = u2.connect() 
+
+#Introduzca el nombre del paquete de la aplicación y acceda a la aplicación correspondiente
+package_name = input("Introduce packagename:")
+d.app_start(package_name)
+d.sleep(1)
+
+#Palabras clave de inicio de sesión necesario
+login =["signin", "sign_in", "login", "log_in", "LOG IN", "SIGN IN"]
+loginfin = ["login_login", "button_text", "Clic para iniciar sesión", "Log In"]
+keyboton = ["signin", "sign_in", "login", "log_in", "LOG IN", "SIGN IN", "sign_up", "ACCOUNT"]
+keywordUser = ["username", "user", "id", "identificador", "Phone", "identifier", "email"]
+keywordPassword = ["password"]
+
+#Hacer que no se muestre el teclado de entrada para evitar error posible
+d.set_fastinput_ime(True)
+d.sleep(1)
+
+def buscar_botonLogin(claves):
+#Buscar el boton de login con una lista de palabras claves como parametro de entrada
+
+def buscar_botonLoginfin(claves):
+#Buscar el boton de login en el último paso para finalizar.
+
+def rellenar_user(clave): 
+#Rellenar el nombre del usuario
+
+def rellenar_password(clave): 
+#Rellenar la contraseña
+
+def buscar_estado(clave):
+#Forma de búsqueda de estado para poder acceder a las aplicaciones de Modo 3
+
+button = buscar_botonLogin(login)
+time.sleep(1)
+
+#Modo 2
+if(button):
+    button.click()
+    time.sleep(1)
+    rellenar_user(keywordUser)
+    time.sleep(1)
+    rellenar_password(keywordPassword)
+    time.sleep(1)
+else:
+#Modo 3
+    if(buscar_estado(keyboton)):
+        button = buscar_botonLogin(login)
+        time.sleep(1)
+        button.click()
+        time.sleep(1)
+        rellenar_user(keywordUser)
+        time.sleep(1)
+        rellenar_password(keywordPassword)
+        time.sleep(1)
+    else:
+#Modo 1
+        username = d(descriptionContains='Username', clickable = True).set_text(username)
+        time.sleep(1)
+        password = d(textContains='Password', clickable = True).set_text(password)
+        time.sleep(1)     
+buscar_botonLoginfin(loginfin).click()
+d.set_fastinput_ime(False)
